@@ -5,28 +5,25 @@ export const ADD_SMURF = 'ADD_SMURF';
 export const ERROR = 'ERROR';
 
 
-    export const getSmurfs = () => dispatch => {
-        dispatch ({
-            type: 'GET_SMURFS'
-         })
-         axios
-         .get('http://localhost:3333/smurfs')
-         .then(res => {
-             console.log('res', res)
-             dispatch({
-                 type: 'GET_SMURFS',
-                 payload: res.data
-             })
-         })
-         .catch(err => {
-             console.log('err', err);
-             dispatch({
-                 type: 'ERROR',
-                 payload: `${err.res.message} with response code ${err.res.code}`
-             });
-             
-         })
-    }
+    const URL = 'http://localhost:3333/smurfs/';
+
+    export const getSmurfs = () =>  {
+       const smurfs = axios.get(`${URL}/get`);
+       return dispatch => {
+         dispatch({ type: 'GET_SMURFS' });
+            smurfs
+            .then(res => 
+                dispatch({
+                    type: 'GET_SMURFS',
+                    payload: res.data }))                 
+            .catch(err => {
+                 console.log('err', err);
+                dispatch({
+                     type: 'ERROR',
+                     payload: `${err.res.message} with response code ${err.res.code}` });
+                });
+         };    
+    };   
 
     export const deleteSmurfs = deleteSmurf => {
         return {
