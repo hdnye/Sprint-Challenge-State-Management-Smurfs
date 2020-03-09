@@ -1,26 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSmurf } from '../actions';
+import { getSmurfs } from '../actions';
 
 
-class Smurfs extends React.Component {
-    state = {
-        newSmurf: ''
-    };
-render() {
+const Smurfs = (props) => {
+    
     return (
-        <React.Fragment>
             <div className='smurflist'>
-
-
-
+                {props.smurfs.map((smurf, id) => 
+                   <h3 key={id}>
+                       {smurf.name}
+                       {smurf.age}
+                       {smurf.height}
+                    </h3>
+                  )}
             </div>
+    )
+  }              
+              
+      
+ 
+                 
+              
+    
 
+const mapStateToProps = state => {
+    return {
+        smurfs: state.smurfs,
+    };
+};
 
-        </React.Fragment>
-
-   )
-  }
-}
-
-export default connect()(Smurfs);
+export default connect(mapStateToProps, { getSmurfs })(Smurfs);

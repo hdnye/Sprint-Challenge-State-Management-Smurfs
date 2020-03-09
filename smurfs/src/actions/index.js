@@ -10,7 +10,7 @@ export const ERROR = 'ERROR';
             type: 'GET_SMURFS'
          })
          axios
-         .get('http://localhost:3333/smurfs')
+         .get('http://localhost:3333/smurfs/get')
          .then(res => {
              console.log('res', res)
              dispatch({
@@ -22,7 +22,7 @@ export const ERROR = 'ERROR';
              console.log('err', err);
              dispatch({
                  type: 'ERROR',
-                 payload: `${err.res.message} with response code ${err.res.code}`
+                 payload: err
              });
              
          })
@@ -38,7 +38,7 @@ export const ERROR = 'ERROR';
 export const addSmurf = () => dispatch => {
         dispatch ({ type: 'ADD_SMURF'})
         axios
-        .post('http://localhost:3333/smurfs')
+        .post('http://localhost:3333/smurfs/post')
         .then(res => {
           dispatch({
             type: 'ADD_SMURF', 
@@ -48,7 +48,7 @@ export const addSmurf = () => dispatch => {
     .catch(err => {
          dispatch({
             type: 'ERROR',
-            payload: `${err.res.message} with response code ${err.res.code}`
+            payload: err
     });
   })
 }
