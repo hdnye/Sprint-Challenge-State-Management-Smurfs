@@ -8,6 +8,7 @@ const intialState = {
     deleteSmurfs: false,
     error: null
 }
+    
 
 export const smurfReducer = (state = intialState, action) => {
     switch(action.type) {

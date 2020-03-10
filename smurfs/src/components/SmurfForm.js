@@ -50,7 +50,7 @@ render() {
 
 const mapStateToProps = state => {
     return {
-       addSmurf: state.addSmurf 
+       smurfs: state.smurfs 
     };    
   };
 
